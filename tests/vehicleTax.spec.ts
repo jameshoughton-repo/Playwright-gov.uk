@@ -2,12 +2,14 @@ import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://vehicleenquiry.service.gov.uk/');
+  await expect(page.getByLabel('Registration number (number')).toBeVisible;
 });
 
 test('Vehicle search, invalid registration', async ({ page }) => {
   // Enter the registration of a vehicle.
   await page.getByLabel('Registration number (number').fill('ABC123');
   await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByRole('heading', { name: 'Vehicle details could not be' })).toBeVisible
 });
 
 test('Vehicle search, field validation', async ({ page }) => {
