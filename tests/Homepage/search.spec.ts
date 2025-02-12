@@ -24,4 +24,5 @@ test('Pagination check', async ({ page }) => {
   await page.getByLabel('Search', { exact: true }).fill('test');
   await page.keyboard.press('Enter');
   await page.getByLabel('Pagination').click();
+  await expect(page).toHaveURL('https://www.gov.uk/search/all?keywords=test&page=2');
 });
