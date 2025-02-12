@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+ 
+const searchTerm = 'Childcare voucher'
 
 test.beforeEach('Test setup', async ({ page }) => {
   await page.goto('https://www.gov.uk/');
@@ -7,7 +9,7 @@ test.beforeEach('Test setup', async ({ page }) => {
 
 test('Valid keyword search', async ({ page }) => {
   // Perform a search on the homepage.
-  await page.getByLabel('Search', { exact: true }).fill('Childcare voucher');
+  await page.getByLabel('Search', { exact: true }).fill(searchTerm);
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL('https://www.gov.uk/search/all?keywords=Childcare+voucher');
 });
@@ -21,8 +23,8 @@ test('Empty keyword search', async ({ page }) => {
 
 test('Pagination check', async ({ page }) => {
   // Ensure the search pagenation is visible on the page.
-  await page.getByLabel('Search', { exact: true }).fill('test');
+  await page.getByLabel('Search', { exact: true }).fill(searchTerm);
   await page.keyboard.press('Enter');
   await page.getByLabel('Pagination').click();
-  await expect(page).toHaveURL('https://www.gov.uk/search/all?keywords=test&page=2');
+  await expect(page).toHaveURL('https://www.gov.uk/search/all?keywords=Childcare+voucher&page=2');
 });

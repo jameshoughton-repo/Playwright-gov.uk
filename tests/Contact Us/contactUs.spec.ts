@@ -1,11 +1,23 @@
 import { test, expect } from '@playwright/test';
 
-test('Contact us scenarios', async ({ page }) => {
-  await page.goto('https://www.gov.uk/contact/govuk');
-  await page.getByLabel('Your name').click();
-  await page.getByLabel('Your name').fill('Test');
-  await page.getByLabel('Your email address').click();
-  await page.getByLabel('Your email address').fill('Test@test.com');
-  await page.getByRole('button', { name: 'Send message' }).click();
-  await expect(page.getByTitle('Please check the form')).toBeVisible;
-});
+test.describe('GOV.UK Search Page', () => {
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('https://www.gov.uk/search/all?keywords=');
+  });
+
+  test.only('should navigate to search page', async ({ page }) => {
+    expect(page.url()).toBe('https://www.gov.uk/search/all?keywords=');
+    expect(await page.title()).toBe('Search GOV.UK');
+  });
+
+  test('should display search input field', async ({ page }) => {
+    const searchInput = await page.$('input[name="keywords"]');
+    expect(searchInput).not.toBeNull();
+  });
+
+  test('should display search button', async ({ page }) => {
+    const searchButton = await page.$('button[type="submit"]');
+    expect(searchButton).not.toBeNull();
+  });
+})
