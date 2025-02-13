@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
  
 const searchTerm = 'Childcare voucher'
 
+
 test.beforeEach('Test setup', async ({ page }) => {
   await page.goto('https://www.gov.uk/');
   await expect(page).toHaveTitle('Welcome to GOV.UK');
