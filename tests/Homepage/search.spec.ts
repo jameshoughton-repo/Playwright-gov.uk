@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
  
-const searchTerm = 'Childcare voucher'
+const searchTerm = "Childcare voucher"
 
 
 test.beforeEach('Test setup', async ({ page }) => {
