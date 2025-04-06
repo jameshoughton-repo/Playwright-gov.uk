@@ -8,7 +8,7 @@ test.describe('GOV.UK Search Page', () => {
 
   test.only('should navigate to search page', async ({ page }) => {
     expect(page.url()).toBe('https://www.gov.uk/search/all?keywords=');
-    expect(await page.title()).toBe('Search GOV.UK');
+    expect(await page.title()).toBe('Search - GOV.UK');
   });
 
   test('should display search input field', async ({ page }) => {

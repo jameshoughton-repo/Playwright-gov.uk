@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const invalidReg = "ABC123"
 const validReg = "KR24 XUV"
+const emptyReg = ""
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://vehicleenquiry.service.gov.uk/');
@@ -17,7 +18,7 @@ test('Vehicle search, invalid registration', async ({ page }) => {
 
 test('Vehicle search, field validation', async ({ page }) => {
   // Confirm empty field validation.
-  await page.getByLabel('Registration number (number').fill('');
+  await page.getByLabel('Registration number (number').fill(emptyReg);
   await page.getByRole('button', { name: 'Continue' }).click();
   expect(page.getByText('Error:Provide the vehicle')).toBeVisible;
 });
