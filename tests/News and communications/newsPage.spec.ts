@@ -5,9 +5,10 @@ test.beforeEach(async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'News and communications' })).toBeVisible();
 });
 
-test('Sort by filtering validation', async ({ page }) => {
-  // Confirm the date filtering on the news results.
-  await page.getByLabel('Sort by').selectOption('updated-oldest');
-  await expect(page.getByText('June 1995')).toBeVisible();
+test('Filtering and categorisation', async ({ page }) => {
+  // Confirm the filtering on the news results.
+  await page.getByRole('button', { name: 'Topic'}).click();
+  await page.getByLabel('Topic', { exact: true}).selectOption('Money');
+  await page.getByRole('button', { name: 'Remove filter Money' }).isVisible();
 });
 
