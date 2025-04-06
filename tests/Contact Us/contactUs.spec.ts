@@ -6,7 +6,7 @@ test.describe('GOV.UK Search Page', () => {
     await page.goto('https://www.gov.uk/search/all?keywords=');
   });
 
-  test.only('should navigate to search page', async ({ page }) => {
+  test('should navigate to search page', async ({ page }) => {
     expect(page.url()).toBe('https://www.gov.uk/search/all?keywords=');
     expect(await page.title()).toBe('Search - GOV.UK');
   });
